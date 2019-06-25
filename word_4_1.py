@@ -1,15 +1,6 @@
 import os
 import re
 
-# ifconfig_result = "'ens160: flags=4163<UP,BROADCAST,RUNNING,MULTICAST> mtu 1500inet ' \
-#                   '192.168.3. netmask 255.255.255.0 broadcast 172.16.66.255 inet6 ' \
-#                   'fe80::250:56ff:feab:59bd prefixlen 64 scopeid 0x20<link> ' \
-#                   'ether 00:50:56:ab:59:bd txqueuelen 1000 (Ethernet) ' \
-#                   'RX packets 174598769 bytes 1795658527217 (1.6 TiB)' \
-#                   ' RX errors 1 dropped 24662 overruns 0 frame 0 ' \
-#                   'TX packets 51706604 bytes 41788673420 (38.9 GiB) ' \
-#                   'TX errors 0 dropped 0 overruns 0 carrier 0 collisions 0'"
-
 ifconfig_result = os.popen('ifconfig ' + 'en0').read()
 
 #使用正则表达式找到IP、掩码、广播和MAC地址
@@ -19,6 +10,13 @@ ipv4_address = re.findall('(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})',ifconfig_result
 netmask = re.findall('(0[x]f{1,6}\d{2})',ifconfig_result)[0]
 boradcast = re.findall('(\d{1,3}\.\d{1,3}\.\d{1,3}\.[255]{3})',ifconfig_result)[0]
 mac_address = re.findall('\w{2}:\w{2}:\w{2}:\w{2}:\w{2}:\w{2}',ifconfig_result)[0]
+
+#打印结果
+print('='*100)
+print('ipv4_add    :%-10s'%ipv4_address)
+print('netmask     :%-10s'%netmask)
+print('boradcast   :%-10s'%boradcast)
+print('mac_add     :%-10s'%mac_address)
 
 
 #产生网关的IP地址
@@ -41,12 +39,6 @@ text = 'traceroute to 163.com (221.130.210.74), 64 hops max, 52 byte packets' \
 #匹配traceroute第一跳信息
 ipv4_get = re.findall('[1]\s+(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})',text)[0]
 
-#打印结果
-print('='*100)
-print('ipv4_add    :%-10s'%ipv4_address)
-print('netmask     :%-10s'%netmask)
-print('boradcast   :%-10s'%boradcast)
-print('mac_add     :%-10s'%mac_address)
 print('get_way     :%-10s'%ipv4_get)
 
 #ping网关
