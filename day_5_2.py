@@ -8,3 +8,4 @@ l2.sort()
 for i in range(len(l1)):
     print(l1[i], l2[i])
 
+
