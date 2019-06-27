@@ -10,8 +10,5 @@ asa_infoamation_key2 = re.findall('(\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}).?(\d{2,5}).
 asa_infoamation_value = re.findall('bytes\s(\d{1,10}).*\s+(UIO)?',asa_infoamation_line1)
 asa_infoamation_value2 = re.findall('bytes\s(\d{1,10}).*\s+(UIO)?',asa_infoamation_line2)
 
-asa_list = [[asa_infoamation_key,asa_infoamation_value],[asa_infoamation_key2,asa_infoamation_value2]]
+print(asa_infoamation_value)
 
-asa_dict = {}
-for x in asa_list:
-    asa_dict[x[0]] = x[1]
