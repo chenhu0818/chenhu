@@ -12,11 +12,25 @@ boradcast = re.findall('(\d{1,3}\.\d{1,3}\.\d{1,3}\.[255]{3})',ifconfig_result)[
 mac_address = re.findall('\w{2}:\w{2}:\w{2}:\w{2}:\w{2}:\w{2}',ifconfig_result)[0]
 
 #打印结果
-print('='*100)
-print('ipv4_add    :%-10s'%ipv4_address)
-print('netmask     :%-10s'%netmask)
-print('boradcast   :%-10s'%boradcast)
-print('mac_add     :%-10s'%mac_address)
+# print('='*100)
+# print('ipv4_add    :%-10s'%ipv4_address)
+# print('netmask     :%-10s'%netmask)
+# print('boradcast   :%-10s'%boradcast)
+# print('mac_add     :%-10s'%mac_address)
+
+#方法2：
+
+#定义打印格式
+
+format_string = '{0:<10s}:{1:<20s}'
+
+#使用format.()调用打印格式进行打印
+
+print(format_string.format('ipv4_addr',ipv4_address))  #'IPV4_ADD'为打印格式{0:<10s}中的内容，变量IPV4
+print(format_string.format('netmask',netmask))
+print(format_string.format('broadcast',boradcast))
+print(format_string.format('mac_addr',mac_address))
+
 
 
 #产生网关的IP地址
